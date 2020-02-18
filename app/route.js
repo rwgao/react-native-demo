@@ -20,7 +20,7 @@ import Popover from './pages/components/popover';
 import Pagination from './pages/components/pagination';
 import SegmentedControl from './pages/components/segmentedControl';
 import TabBar from './pages/components/tabBar';
-import Tabs from './pages/components/tabs';
+// import Tabs from './pages/components/tabs';
 import ButtonExamp from './pages/components/button';
 import Checkbox from './pages/components/checkbox';
 import DatePickerView from './pages/components/datePickerView';
@@ -210,12 +210,12 @@ const Stack = createStackNavigator({
       title: '标签栏'
     }
   },
-  Tabs: {
-    screen: Tabs,
-    navigationOptions: {
-      title: '标签页'
-    }
-  },
+  // Tabs: {
+  //   screen: Tabs,
+  //   navigationOptions: {
+  //     title: '标签页'
+  //   }
+  // },
   Button: {
     screen: ButtonExamp,
     navigationOptions: {

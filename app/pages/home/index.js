@@ -79,14 +79,14 @@ export default class Home extends Component {
           >
             标签栏
           </ListItem>
-          <ListItem
+          {/* <ListItem
               arrow="horizontal"
               onPress={() => {
                 this.props.navigation.navigate('Tabs');
               }}
           >
             标签页
-          </ListItem>
+          </ListItem> */}
           <ListItem
               arrow="horizontal"
               onPress={() => {

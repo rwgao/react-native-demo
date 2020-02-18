@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from "react-native";
 import { Button, InputItem, List, Toast } from "@ant-design/react-native";
+import { connect } from 'react-redux'
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: '',
+      username: '',
       password: '',
     };
   }
 
   login() {
-    const { userName, password } = this.state;
-    if (userName === 'root' && password === '123456') {
-      this.props.navigation.navigate('Home');
-    } else {
-      Toast.success('账户密码错误');
-    }
+    const { username, password } = this.state;
+    const { dispatch } = this.props;
+    dispatch({ type: 'login/login', payload: { username, password } })
   }
 
   render() {
+    const { loginloading } = this.props;
     return (
       <View style={styles.containerStyle}>
         <List style={{ marginTop: 20 }}>
@@ -28,7 +27,7 @@ export default class LoginPage extends Component {
             placeholder={'用户名: root'}
             onChange={value => {
               this.setState({
-                userName: value,
+                username: value,
               });
             }}
           />
@@ -43,6 +42,7 @@ export default class LoginPage extends Component {
           />
         </List>
         <Button
+          loading={loginloading}
           type="primary"
           size={'large'}
           // eslint-disable-next-line react-native/no-inline-styles
@@ -62,3 +62,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+function mapStateToProps({ login, loading }) {
+  return {
+    login,
+    loginloading: loading.effects['login/login']
+  }
+}
+
+export default connect(mapStateToProps)(LoginPage);
