@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet, View } from "react-native";
-import { Button, InputItem, List, Toast } from "@ant-design/react-native";
+import React, { Component } from 'react'
+import { StyleSheet, View } from 'react-native'
+import { Button, InputItem, List } from '@ant-design/react-native'
 import { connect } from 'react-redux'
 
 class LoginPage extends Component {
@@ -8,7 +8,7 @@ class LoginPage extends Component {
     super(props);
     this.state = {
       username: '',
-      password: '',
+      password: ''
     };
   }
 

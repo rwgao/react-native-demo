@@ -1,7 +1,7 @@
 import axios from 'axios'
 import asyncStorage from '@react-native-community/async-storage';
 import { Toast } from '@ant-design/react-native';
-import { StackActions } from 'react-navigation'
+import NavigationService from './navigation'
 
 const request = axios.create({
   baseURL: 'http://crm-test-api.chiyu9.com',
@@ -28,15 +28,12 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   response => {
     const data = response.data || {}
-    debugger
     console.log(data)
     if (data.code !== 1000) {
       Toast.fail(data.msg)
       if (data.code === 1003) {
-        // window.location.href = '/login';
-        StackActions.push({
-          routeName: 'Auth'
-        })
+        asyncStorage.clear()
+        NavigationService.reset('Auth')
       }
     }
     return data;

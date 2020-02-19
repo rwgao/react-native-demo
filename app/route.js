@@ -5,53 +5,54 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from '@ant-design/react-native';
+import NavigationService from '@/utils/navigation'
 
-import Home from './pages/home';
-import Detail from './pages/detail';
-import My from './pages/my';
-import Invite from './pages/invite';
-import Login from './pages/login';
-import AuthLoadingScreen from './pages/authloading';
-import Flex from './pages/components/flex';
-import WingBlank from './pages/components/wingblank';
-import WhiteSpace from './pages/components/whitespace';
-import DrawerExap from './pages/components/drawer';
-import Popover from './pages/components/popover';
-import Pagination from './pages/components/pagination';
-import SegmentedControl from './pages/components/segmentedControl';
-import TabBar from './pages/components/tabBar';
-// import Tabs from './pages/components/tabs';
-import ButtonExamp from './pages/components/button';
-import Checkbox from './pages/components/checkbox';
-import DatePickerView from './pages/components/datePickerView';
-import DatePicker from './pages/components/datePickerView/datePicker';
-import InputItem from './pages/components/inputItem';
-import PickerView from './pages/components/pickerView';
-import Picker from './pages/components/pickerView/picker';
-import Radio from './pages/components/radio';
-import Switch from './pages/components/switch';
-import Slider from './pages/components/slider';
-import Stepper from './pages/components/stepper';
-import SearchBar from './pages/components/inputItem/searchBar';
-import TextreaItem from './pages/components/inputItem/textreaItem';
-import Accordion from './pages/components/accordion';
-import Badge from './pages/components/badge';
-import Carousel from './pages/components/carousel';
-import Card from './pages/components/card';
-import Grid from './pages/components/grid';
-import IconExamp from './pages/components/icon';
-import ListView from './pages/components/listView';
-import List from './pages/components/list';
-import NoticeBar from './pages/components/noticeBar';
-import Steps from './pages/components/steps';
-import Tags from './pages/components/tags';
-import ActionSheet from './pages/components/actionSheet';
-import ActivityIndicator from './pages/components/activityIndicator';
-import Modal from './pages/components/modal';
-import Progress from './pages/components/progress';
-import Toast from './pages/components/toast';
-import SwipeAction from './pages/components/swipeAction';
-import Result from './pages/components/result';
+import Home from '@/pages/home';
+import Detail from '@/pages/detail';
+import My from '@/pages/my';
+import Invite from '@/pages/invite';
+import Login from '@/pages/login';
+import AuthLoadingScreen from '@/pages/authloading';
+import Flex from '@/pages/components/flex';
+import WingBlank from '@/pages/components/wingblank';
+import WhiteSpace from '@/pages/components/whitespace';
+import DrawerExap from '@/pages/components/drawer';
+import Popover from '@/pages/components/popover';
+import Pagination from '@/pages/components/pagination';
+import SegmentedControl from '@/pages/components/segmentedControl';
+import TabBar from '@/pages/components/tabBar';
+// import Tabs from '@/pages/components/tabs';
+import ButtonExamp from '@/pages/components/button';
+import Checkbox from '@/pages/components/checkbox';
+import DatePickerView from '@/pages/components/datePickerView';
+import DatePicker from '@/pages/components/datePickerView/datePicker';
+import InputItem from '@/pages/components/inputItem';
+import PickerView from '@/pages/components/pickerView';
+import Picker from '@/pages/components/pickerView/picker';
+import Radio from '@/pages/components/radio';
+import Switch from '@/pages/components/switch';
+import Slider from '@/pages/components/slider';
+import Stepper from '@/pages/components/stepper';
+import SearchBar from '@/pages/components/inputItem/searchBar';
+import TextreaItem from '@/pages/components/inputItem/textreaItem';
+import Accordion from '@/pages/components/accordion';
+import Badge from '@/pages/components/badge';
+import Carousel from '@/pages/components/carousel';
+import Card from '@/pages/components/card';
+import Grid from '@/pages/components/grid';
+import IconExamp from '@/pages/components/icon';
+import ListView from '@/pages/components/listView';
+import List from '@/pages/components/list';
+import NoticeBar from '@/pages/components/noticeBar';
+import Steps from '@/pages/components/steps';
+import Tags from '@/pages/components/tags';
+import ActionSheet from '@/pages/components/actionSheet';
+import ActivityIndicator from '@/pages/components/activityIndicator';
+import Modal from '@/pages/components/modal';
+import Progress from '@/pages/components/progress';
+import Toast from '@/pages/components/toast';
+import SwipeAction from '@/pages/components/swipeAction';
+import Result from '@/pages/components/result';
 
 
 /**
@@ -77,8 +78,8 @@ const Tab = createBottomTabNavigator({
       tabBarLabel: '组件',
       tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('./assets/images/home.png')}
-          style={[{ height: 24, width: 24 }, { tintColor: tintColor }]} />
+            source={require('./assets/images/home.png')}
+            style={[{ height: 24, width: 24 }, { tintColor: tintColor }]} />
       )
 
     }
@@ -102,8 +103,8 @@ const Tab = createBottomTabNavigator({
       tabBarLabel: '我的',
       tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('./assets/images/user.png')}
-          style={[{ height: 24, width: 24 }, { tintColor: tintColor }]}
+            source={require('./assets/images/user.png')}
+            style={[{ height: 24, width: 24 }, { tintColor: tintColor }]}
         />
       )
     }
@@ -497,7 +498,13 @@ export default class App extends Component {
   render() {
     return (
       <Provider>
-        <AppContainer />
+        <AppContainer
+            ref={
+              navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef)
+              }
+          }
+        />
       </Provider>
     );
   }
