@@ -1,7 +1,7 @@
 /**
  * 无navigation 跳转方式封装
  */
-import { NavigationActions, StackActions } from 'react-navigation'
+import { NavigationActions, StackActions, SwitchActions } from 'react-navigation'
 
 let _navigator;
 
@@ -26,7 +26,12 @@ function reset(routeName, params) {
   _navigator.dispatch(resetAction)
 }
 
+function jumpTo(routeName) {
+  _navigator.dispatch(SwitchActions.jumpTo({ routeName }))
+}
+
 export default {
+  jumpTo,
   reset,
   navigate,
   setTopLevelNavigator

@@ -53,6 +53,10 @@ import Progress from '@/pages/components/progress';
 import Toast from '@/pages/components/toast';
 import SwipeAction from '@/pages/components/swipeAction';
 import Result from '@/pages/components/result';
+import CouponBuy from '@/pages/coupon/buy'
+import CouponExpense from '@/pages/coupon/expense'
+import CouponBuyDetail from '@/pages/coupon/buyDetail'
+import CouponExpenseDetail from '@/pages/coupon/expenseDetail'
 
 
 /**
@@ -162,6 +166,30 @@ const Stack = createStackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: '登录'
     })
+  },
+  CouponBuy: {
+    screen: CouponBuy,
+    navigationOptions: {
+      title: '点券购买'
+    }
+  },
+  BuyDetail: {
+    screen: CouponBuyDetail,
+    navigationOptions: {
+      title: '购买详情'
+    }
+  },
+  CouponExpense: {
+    screen: CouponExpense,
+    navigationOptions: {
+      title: '点券消费'
+    }
+  },
+  ExpenseDetail: {
+    screen: CouponExpenseDetail,
+    navigationOptions: {
+      title: '消费详情'
+    }
   },
   Flex: {
     screen: Flex,

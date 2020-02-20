@@ -14,8 +14,11 @@ request.interceptors.request.use(
     let userToken = await asyncStorage.getItem('userToken')
     if (userToken) {
       // let each request carry token
-      config.headers['Authorization'] = userToken
+      config.headers['Authorization'] = `Bearer ${userToken}`
+    } else {
+      config.headers['Authorization'] = ''
     }
+    console.log(config)
     return config
   },
   error => {
@@ -33,11 +36,16 @@ request.interceptors.response.use(
       Toast.fail(data.msg)
       if (data.code === 1003) {
         asyncStorage.clear()
-        NavigationService.reset('Auth')
+        NavigationService.jumpTo('Auth')
       }
     }
     return data;
   }, err => {
+    const data = err.response.data || {}
+    if (data.status === 401 || data.code === 1003) {
+      asyncStorage.clear()
+      NavigationService.jumpTo('Auth')
+    }
     console.log('response', err)
     return Promise.reject(err)
   }

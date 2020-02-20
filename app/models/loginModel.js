@@ -8,6 +8,7 @@ export default {
   namespace: 'login',
   state: {
     // state初始值
+    userInfo: {}
   },
   // 同步方法
   reducers: {
@@ -20,15 +21,13 @@ export default {
   },
   // 异步方法
   effects: {
-    * login({ payload }, { call }) {
+    * login({ payload }, { call, put }) {
       const { code, result } = yield call(loginService.login, payload)
       if (code === 1000) {
+        yield put({ type: 'update', payload: { userInfo: result } })
         asyncStorage.setItem('userToken', result.token)
         asyncStorage.setItem('userInfo', JSON.stringify(result))
         NavigationService.navigate('App')
-        // StackActions.push({
-        //   routeName: 'App'
-        // })
       }
     },
     * logout({ payload }, { call }) {
@@ -36,10 +35,7 @@ export default {
       if (code === 1000) {
         Toast.success('登出成功')
         asyncStorage.clear()
-        NavigationService.reset('Auth')
-        // StackActions.push({
-        //   routeName: 'Auth'
-        // })
+        NavigationService.jumpTo('Auth')
       }
     }
   }

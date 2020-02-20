@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ImageBackground, TouchableWithoutFeedback } from 'react-native'
 import { Button, InputItem, List } from '@ant-design/react-native'
 import { connect } from 'react-redux'
 
@@ -21,38 +21,50 @@ class LoginPage extends Component {
   render() {
     const { loginloading } = this.props;
     return (
-      <View style={styles.containerStyle}>
-        <List style={{ marginTop: 20 }}>
-          <InputItem
-            placeholder={'用户名: root'}
-            onChange={value => {
-              this.setState({
-                username: value,
-              });
-            }}
-          />
-          <InputItem
-            type={'password'}
-            placeholder={'密码: 123456'}
-            onChange={value => {
-              this.setState({
-                password: value,
-              });
-            }}
-          />
-        </List>
-        <Button
-          loading={loginloading}
-          type="primary"
-          size={'large'}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{ margin: 16 }}
-          onPress={() => {
-            this.login();
-          }}>
-          登陆
+      <ImageBackground
+        style={{flex:1}}
+        source={require('@/assets/images/loginbg.jpg')}
+      >
+        <TouchableWithoutFeedback
+          style={{flex:1}}
+        >
+          <View style={styles.containerStyle}>
+            <View style={styles.main}>
+              <List>
+                <InputItem
+                  placeholder={'用户名: super'}
+                  onChange={value => {
+                    this.setState({
+                      username: value,
+                    });
+                  }}
+                />
+                <InputItem
+                  type={'password'}
+                  placeholder={'密码: 12345678'}
+                  onChange={value => {
+                    this.setState({
+                      password: value,
+                    });
+                  }}
+                />
+              </List>
+              <Button
+                loading={loginloading}
+                type="primary"
+                size={'large'}
+                style={{ marginTop: 16 }}
+                // eslint-disable-next-line react-native/no-inline-styles
+                onPress={() => {
+                  this.login();
+                }}>
+                登陆
         </Button>
-      </View>
+            </View>
+          </View>
+
+        </TouchableWithoutFeedback>
+      </ImageBackground>
     );
   }
 }
@@ -60,7 +72,13 @@ class LoginPage extends Component {
 const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
+  main: {
+    width: 320,
+    height: 320
+  }
 });
 
 function mapStateToProps({ login, loading }) {
