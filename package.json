@@ -19,7 +19,7 @@
     "axios": "^0.19.2",
     "dva-core": "^2.0.2",
     "dva-loading": "^3.0.20",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.1",
